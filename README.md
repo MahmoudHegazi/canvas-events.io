@@ -62,7 +62,7 @@ you can add any other data for specfic object or all other objects this will ret
 let painter;
 window.onload = function() {
   /* Use Canvas Events Library  */
-  painter = mouseDragStartGenerator('#myCanvas', projectStamps);  
+  painter = startCanvasEvents('#myCanvas', projectStamps);  
 };
 
 /* #myCanvas is the canvas element DOM selector required,
