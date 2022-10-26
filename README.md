@@ -27,19 +27,21 @@ Now you can use events on canvas shapes
 
 ## How to Start
 
-!note before start
+#### ! note before start ☝
 [img icon elements must have a CLASS: icon_image and a unique identifier, the canvas must have a unique identifier, and the canvas's background image must have ID: project_image ]
 
-1. include JQuery framework, before canvas-events framework, then add this script in your HTML File
+```
+ <script src="https://mahmoudhegazi.github.io/canvas-events.io/canvas-events.js"></script>
+ ```
+ 
+1. 🅰 include JQuery framework, before canvas-events framework, then add this script in your HTML File
 
-```<script src="https://mahmoudhegazi.github.io/canvas-events.io/canvas-events.js"></script>```
-
-2. Add all the img icons you want the framework to draw in the canvas element, If you want to make a copy of the same image don't provide two images only one and add the new object for this image in the projectImage array cotain same img HTML id with the new position and any other required data you need.
+2. 🅱 Add all the img icons you want the framework to draw in the canvas element, If you want to make a copy of the same image don't provide two images only one and add the new object for this image in the projectImage array cotain same img HTML id with the new position and any other required data you need.
 
 
-3. Add a Canvas element and add an ID to it and we'll use it in the setup.
+3. 🅲 Add a Canvas element and add an ID to it and we'll use it in the setup.
 
-4- Create an Array variable that contains objects repsersnts your icons will be painted  
+4- 🅳 Create an Array variable that contains objects repsersnts your icons will be painted  
 
 ```javascript
 const projectStamps = [
@@ -51,7 +53,7 @@ const projectStamps = [
 you can add any other data for specfic object or all other objects this will return also more data in the event listeners can used to extend framework funcitonlty and make it more dynamic.
 
 
-5- Finally, create a new object painter and assign it to a variable,
+5- 🅴 Finally, create a new object painter and assign it to a variable,
 
 ```javascript
 
