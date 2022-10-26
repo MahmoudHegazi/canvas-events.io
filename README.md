@@ -32,7 +32,7 @@ Now you can use events on canvas shapes
 
 1. include JQuery framework, before canvas-events framework, then add this script in your HTML File
 
-> ```HTML <script src="https://mahmoudhegazi.github.io/canvas-events.io/canvas-events.js"></script>```
+> ```html <script src="https://mahmoudhegazi.github.io/canvas-events.io/canvas-events.js"></script>```
 
 2. Add all the img icons you want the framework to draw in the canvas element, If you want to make a copy of the same image don't provide two images only one and add the new object for this image in the projectImage array cotain same img HTML id with the new position and any other required data you need.
 
