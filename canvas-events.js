@@ -28,7 +28,6 @@ function updateDataTransferStatus(dataObj, status = 'completed') {
 }
 
 
-
 var settings = {
   holdWait: 30,
   delayBeforeLastCursor: 150,
