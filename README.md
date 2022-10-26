@@ -30,7 +30,7 @@ Now you can use events on canvas shapes
 ## How to Start
 
 #### ! note before start ☝
-[img icon elements must have a CLASS: icon_image and a unique identifier, the canvas must have a unique identifier, and the canvas's background image must have ID: project_image ], also if you stuck try to check examples page for Example1 or visit https://mahmoudhegazi.github.io/canvas-events.io/ to check live example
+[img icon elements must have a CLASS: icon_image and a unique identifier, the canvas must have a unique identifier, and the canvas's background image must have ID: project_image ] the width, height you set for canvas will used be the framework automatic, also if you stuck try to check examples page for Example1 or visit https://mahmoudhegazi.github.io/canvas-events.io/ to check live example
 
 ```
  <script src="https://mahmoudhegazi.github.io/canvas-events.io/canvas-events.js"></script>
@@ -47,8 +47,8 @@ Now you can use events on canvas shapes
 
 ```javascript
 const projectStamps = [
-  {title: 'repear', image_id: 'scream',  x: 100,  y: 100,  w: 35,  h: 35,  id: 1},
-  {title: 'repear', image_id: 'scream',  x: 100,  y: 100,  w: 35,  h: 35,  id: 1}
+  {title: 'Moving furniture', image_id: 'moving_icon_id',  x: 100,  y: 100,  w: 35,  h: 35,  id: 1},
+  {title: 'fix air conditon', image_id: 'fix_icon_id',  x: 150,  y: 200,  w: 35,  h: 35,  id: 2}
 ]
 ```
 > this object must include at least these properties  below, 
