@@ -1,4 +1,6 @@
-# canvas-events framework
+# canvas-events.js framework
+
+![canvas_events_logo](https://user-images.githubusercontent.com/55125302/198148829-567126b9-1982-43d4-aaff-b884e38f8aa5.JPG)
 
 ## what is that library
 
