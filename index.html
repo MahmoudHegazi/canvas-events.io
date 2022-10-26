@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    .noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+  </style>
+</head>n
+<body>
+
+<img class="icon_image" id="scream" width="35" height="35"
+src="https://i.ibb.co/wYyc259/iconimage.png" alt="The Scream">
+
+<img id="project_image" width="450" height="300"
+src="https://i.ibb.co/sK5HtQy/bulding-image.png">
+
+<button onclick="drawProject()">Redraw things</button>
+
+
+<div id="currentStamp">
+
+</div>
+
+<canvas id="myCanvas" width="450" height="300"
+style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+<script src="canvas_events5.js"></script>
+<script>
+
+/*how to use this library*/
+let painter;
+
+const projectStamps = [{
+  title: 'repear',
+  image_id: 'scream',
+  x: 100,
+  y: 100,
+  w: 35,
+  h: 35,
+  id: 1
+}, {
+  title: 'repear2',
+  image_id: 'scream',
+  x: 100,
+  y: 100,
+  w: 35,
+  h: 35,
+  id: 122
+}, {
+  title: 'fix',
+  image_id: 'scream',
+  x: 200,
+  y: 100,
+  w: 35,
+  h: 35,
+  id: 2
+}, {
+  title: 'development',
+  image_id: 'scream',
+  x: 50,
+  y: 0,
+  w: 35,
+  h: 35,
+  id: 3
+}, {
+  title: 'guarding',
+  image_id: 'scream',
+  x: 170,
+  y: 0,
+  w: 35,
+  h: 35,
+  id: 4
+}];
+
+
+
+window.onload = function() {
+  /* Use Canvas Events Library */
+  painter = mouseDragStartGenerator('#myCanvas', projectStamps);  
+};
+
+
+/*   Drag Events Listener STarts (developer work) */
+$(document).on('CanvasDragStart', function(e, eventInfo) {
+  console.log("My First Drag Event listener.", eventInfo);
+
+});
+
+$(document).on('CanvasDragOver', function(e, eventInfo) {
+  console.log("Reciveing Datatransfer shape from drag event listener ", eventInfo);
+
+  //console.log("\n\n\n\n", eventInfo, '\n\n\n');
+});
+
+
+$(document).on('CanvasDrop', function(e, eventInfo) {
+
+  if (!eventInfo || !eventInfo.dropEvent || !eventInfo.transferObjState || !eventInfo.transferObjState.getData || !eventInfo.transferObjState.getData.data || !eventInfo.transferObjState.getData.data.id || !eventInfo.elmSelector) {
+    console.log("this flash message, unknown error unable to move the icon");
+    return false;
+  }
+  console.log("Reciveing Datatransfer shape from drop event listener ", eventInfo);
+  /*easy as developer now control any shape*/
+  //MoveStampIcon(eventInfo.transferObjState.data, eventInfo.transferObjState);
+
+  const canvasElm = document.querySelector(eventInfo.elmSelector);
+  const shape = eventInfo.transferObjState.getData.data;
+
+  if (canvasElm) {
+    const rect = canvasElm.getBoundingClientRect();
+    const x = eventInfo.dropEvent.clientX - rect.left; /*x position within the element */
+    const y = eventInfo.dropEvent.clientY - rect.top; /*y position within the element.*/
+
+
+    const newX = x - (shape.w / 2);
+    const newY = y - (shape.h / 2);
+
+    let success = painter.MoveStampIcon(shape.id, newX, newY);
+    console.log("\n\n\n\n", eventInfo, newX, newY, '\n\n\n');
+  }
+
+});
+
+
+$(document).on('CanvasRelaseCancel', function(e, eventInfo) {
+  console.log("Reciveing Datatransfer from drag relase cancel this new event data just info and used for back any changes made if drag faliure also let u able even to make changes using data transfer when event cancled on canvas shape for example game and user not able to drop this item in required place so hide this item for example important event", eventInfo);
+
+  console.log("\n\n\n\n", eventInfo, '\n\n\n');
+});
+
+
+
+
+$(document).on('canvasStampClick', function(e, eventInfo) {
+
+  if (!painter.stampEventsOn) {
+    return false;
+  }
+  //subscribers = $('.subscribers-testEvent');
+  console.log("hi canvasStampClick AI event listener CanvasEvents", e, eventInfo);
+
+  $("#currentStamp").html(`<span class="badge badge-secondary">${eventInfo.shape.title}</span>`);
+});
+
+$(document).on('canvasGroupStampClick', function(e, eventInfo) {
+  if (!painter.stampEventsOn) {
+    return false;
+  }
+  $("#currentStamp").html('');
+  //subscribers = $('.subscribers-testEvent');
+  console.log("hi canvasGroupStampClick AI event listener CanvasEvents", e, eventInfo);
+
+  if (eventInfo && eventInfo.shapes && eventInfo.shapes.length) {
+    eventInfo.shapes.forEach((clickedShape) => {
+      $("#currentStamp").append(`<span class="badge badge-secondary">${clickedShape.title}</span>`);
+    });
+  }
+});
+
+/* onStampMouseEnter (1 time called only when enter stamp) */
+$(document).on('stampMouseEnter', function(e, eventInfo) {
+
+  if (!eventInfo){
+     return false;
+  }
+  
+  if (!painter.stampEventsMouseOn) {
+    return false;
+  }
+
+  painter.CanvasHoverEffect(eventInfo.shape);
+  console.log("stamp stampMouseEnter event listener");
+});
+
+
+
+$(document).on('stampMouseOut', function(e, eventInfo) {
+  if (!painter.stampEventsMouseOn) {
+    return false;
+  }
+
+  /*relational database point */
+  painter.removeBorder(eventInfo.shape.id);
+
+  console.log("stamp stampMouseOut event listener");
+
+});
+
+
+
+
+/*remove stamp event listener */
+
+$(document).on('canvasStampRemove', function(e, eventInfo) {
+  console.log("hi canvasStampRemove AI event listener", e, eventInfo);
+});
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html> 
