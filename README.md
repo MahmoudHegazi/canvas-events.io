@@ -1,23 +1,15 @@
 # canvas-events framework
 
-# canvas-events
-JavaScript library that provide events for work with canvas shapes as they are normal HTML elements, focus on shapes/ajax/functionality/design/graphics and let this library handle pixels events for…
-
-
-
 ## what is that library
 
 *. this js small library hellp developers to work with canvas and shapes, and it provide custom javascript events to deal with shapes on canvas as it html elements normaly event listeners
 *. this library provides internal pull events and not external API , also it is based on real Javascript event set. which makes the events of this  library run as native events and at the same time javascript calls real events that makes library fast and 100% accurate and makes it easy to use canvas for any developer just provide the canvas id for the start function and start setting your event listener like that normal event listener  in JavaScript. 
 
-### languages and framworks
+## languages and framworks
 1. javascript
 2. Jquery
 
-
-
-### What kind of events does this library provide
-
+## What kind of events does this library provide
 
 Now you can use events on canvas shapes
 
@@ -32,6 +24,49 @@ Now you can use events on canvas shapes
 9. click event
 10. mouseenter shape event (accurate by 1 pixel)
 11. mouseout shape event (accurate by 1 pixel)
+
+## How to Start
+
+!note before start
+[img icon elements must have a CLASS: icon_image and a unique identifier, the canvas must have a unique identifier, and the canvas's background image must have ID: project_image ]
+
+
+
+2- Add all the img icons you want the framework to draw in the canvas element, If you want to make a copy of the same image don't provide two images only one and add the new object for this image in the projectImage array cotain same img HTML id with the new position and any other required data you need.
+
+
+3- Add a Canvas element and add an ID to it and we'll use it in the setup.
+
+4- Create an Array variable that contains objects repsersnts your icons will be painted  
+
+```javascript
+const projectStamps = [
+  {title: 'repear', image_id: 'scream',  x: 100,  y: 100,  w: 35,  h: 35,  id: 1},
+  {title: 'repear', image_id: 'scream',  x: 100,  y: 100,  w: 35,  h: 35,  id: 1}
+]
+```
+> this object must include at least these properties  below, 
+you can add any other data for specfic object or all other objects this will return also more data in the event listeners can used to extend framework funcitonlty and make it more dynamic.
+
+
+5- Finally, create a new object painter and assign it to a variable,
+
+```javascript
+
+let painter;
+window.onload = function() {
+  /* Use Canvas Events Library  */
+  painter = mouseDragStartGenerator('#myCanvas', projectStamps);  
+};
+
+/* #myCanvas is the canvas element DOM selector required,
+projectStamps is the list of all starter icons required for the all events*/
+```
+
+
+> You can have more than one Painter object because it is returned by the function and event listeners are sperated from painter object method or it not can effect it  global variables as it the parent class for it,
+you can add diffrent data to each object variable and extend it functions or use diffrent proprties.
+
 
 
 ### What is Relase Cancel event do:
