@@ -347,22 +347,23 @@ function startDragEnterListener(event, elmSelector = settings.canvasSelector) {
 }
 
 /*main function*/
-function mouseDragStartGenerator(elmSelector, projectStamps) {
+function startCanvasEvents(elmSelector, projectStamps, stampEventsOn=true, stampEventsMouseOn=true, hoverBgZero= "rgba(50, 250,10, 0.3)", hoverBgOne="rgba(170, 170,240, 0.3)") {
 
 
 const painter = {
-
-
-stampEventsOn : true,
-stampEventsMouseOn : true,
+/* easly controll the events and close them*/
+stampEventsOn : stampEventsOn,
+stampEventsMouseOn : stampEventsMouseOn,
 currentMouseEnters : [],
 currentMouseEntersShapes : [],
 borders : [],
-hoverBgZero : "rgba(50, 250,10, 0.3)",
-hoverBgOne : "rgba(170, 170,240, 0.3)",
+hoverBgZero : hoverBgZero,
+hoverBgOne : hoverBgOne,
 canvas : null,
 ctx : null,
-stampEventsMouseOn : false,
+projectStamps: projectStamps,
+currentShapes: projectStamps,
+
 
 CanvasHoverEffect(stamp) {
 
@@ -373,7 +374,7 @@ CanvasHoverEffect(stamp) {
 
 
   const border = {
-    id: borders.length,
+    id: this.borders.length,
     frogienKey: stamp.id,
     title: 'border',
     x: stamp.x,
@@ -394,8 +395,8 @@ CanvasHoverEffect(stamp) {
 
 removeBorder(stampPrimaryKey) {
   let targetI = false;
-  for (let i = 0; i < borders.length; i++) {
-    if (borders[i].frogienKey == stampPrimaryKey) {
+  for (let i = 0; i < this.borders.length; i++) {
+    if (this.borders[i].frogienKey == stampPrimaryKey) {
       targetI = i;
       break;
     }
@@ -403,7 +404,7 @@ removeBorder(stampPrimaryKey) {
   if (targetI !== false) {
     /* remove the stamp from drawing stamps list and redraw the data */
     this.borders.splice(targetI, 1);
-    this.drawProject(canvas, ctx, projectStamps);
+    this.drawProject(this.canvas, this.ctx, this.projectStamps);
   }
 },
 
@@ -444,7 +445,7 @@ clearCanvas() {
     this.ctx.drawImage(projectImage, 0, 0);
   }
 
-  projectStamps.forEach((stamp) => {
+  this.projectStamps.forEach((stamp) => {
     this.addStamp(stamp);
   });
   // console.log(currentShapes);
@@ -512,8 +513,6 @@ MoveStampIcon(targetId, newX, newY) {
 
 painter.canvas = document.querySelector(elmSelector);
 painter.ctx = painter.canvas.getContext("2d");
-painter.projectStamps = projectStamps;
-painter.currentShapes = projectStamps;
 
   mouseEnterAndOutCB(painter.canvas, painter.currentShapes, painter.projectStamps);
   clickAndUnClickCB(painter.canvas,painter.currentShapes, painter.projectStamps);
