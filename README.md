@@ -121,120 +121,50 @@ window.onload = function() {
     console.log("My First Drag Event listener.", eventInfo);
 
   });
-
+  /*CanvasDragOver returns 2 events CanvasDragOver and mouse move js events with datatransfet object*/
   $(document).on('CanvasDragOver', function(e, eventInfo) {
     console.log("Reciveing Datatransfer shape from drag event listener ", eventInfo);
-
-    //console.log("\n\n\n\n", eventInfo, '\n\n\n');
-  });
-
-
-  $(document).on('CanvasDrop', function(e, eventInfo) {
-
-    if (!eventInfo || !eventInfo.dropEvent || !eventInfo.transferObjState || !eventInfo.transferObjState.getData || !eventInfo.transferObjState.getData.data || !eventInfo.transferObjState.getData.data.id || !eventInfo.elmSelector) {
-      console.log("this flash message, unknown error unable to move the icon");
-      return false;
-    }
-    console.log("Reciveing Datatransfer shape from drop event listener ", eventInfo);
-    /*easy as developer now control any shape*/
-    //MoveStampIcon(eventInfo.transferObjState.data, eventInfo.transferObjState);
-
-    const canvasElm = document.querySelector(eventInfo.elmSelector);
-    const shape = eventInfo.transferObjState.getData.data;
-
-    if (canvasElm) {
-      const rect = canvasElm.getBoundingClientRect();
-      const x = eventInfo.dropEvent.clientX - rect.left; /*x position within the element */
-      const y = eventInfo.dropEvent.clientY - rect.top; /*y position within the element.*/
-
-
-      const newX = x - (shape.w / 2);
-      const newY = y - (shape.h / 2);
-
-      let success = painter.MoveStampIcon(shape.id, newX, newY);
-      console.log("\n\n\n\n", eventInfo, newX, newY, '\n\n\n');
-    }
+    $(document).on('CanvasDrop', function(e, eventInfo) {
 
   });
-
 
   $(document).on('CanvasRelaseCancel', function(e, eventInfo) {
-    console.log("Reciveing Datatransfer from drag relase cancel this new event data just info and used for back any changes made if drag faliure also let u able even to make changes using data transfer when event cancled on canvas shape for example game and user not able to drop this item in required place so hide this item for example important event", eventInfo);
-
-    console.log("\n\n\n\n", eventInfo, '\n\n\n');
+    console.log("Reciveing Datatransfer from drag relase cancel this new event data just info and used for back any changes made if drag faliure also let u able even to make changes using data transfer when event cancled on canvas shape for example game and user not able to drop this item in required place so hide this item for
   });
 
 
-
-
+  /*Event canvasStampClick one element clicked [list of clicked shapes length is 1]*/
   $(document).on('canvasStampClick', function(e, eventInfo) {
-
-    if (!painter.stampEventsOn) {
-      return false;
-    }
-    //subscribers = $('.subscribers-testEvent');
-    console.log("hi canvasStampClick AI event listener CanvasEvents", e, eventInfo);
-
-    $("#currentStamp").html(`<span class="badge badge-secondary">${eventInfo.shape.title}</span>`);
+    console.log("canvasStampClick event listener CanvasEvents", e, eventInfo);
   });
-
+  
+  /*canvasGroupStampClick more than one element clicked in same time so [list of clicked shapes length > 1] */
   $(document).on('canvasGroupStampClick', function(e, eventInfo) {
-    if (!painter.stampEventsOn) {
-      return false;
-    }
-    $("#currentStamp").html('');
-    //subscribers = $('.subscribers-testEvent');
-    console.log("hi canvasGroupStampClick AI event listener CanvasEvents", e, eventInfo);
-
-    if (eventInfo && eventInfo.shapes && eventInfo.shapes.length) {
-      eventInfo.shapes.forEach((clickedShape) => {
-        $("#currentStamp").append(`<span class="badge badge-secondary">${clickedShape.title}</span>`);
-      });
-    }
+    console.log("canvasGroupStampClick event listener CanvasEvents", e, eventInfo);
   });
 
   /* onStampMouseEnter (1 time called only when enter stamp) */
   $(document).on('stampMouseEnter', function(e, eventInfo) {
-
-    if (!eventInfo){
-       return false;
-    }
-
-    if (!painter.stampEventsMouseOn) {
-      return false;
-    }
-
-    painter.CanvasHoverEffect(eventInfo.shape);
-    console.log("stamp stampMouseEnter event listener");
   });
 
-
-
+  /* onStampMouseEnter (1 time called only when enter stamp) */
   $(document).on('stampMouseOut', function(e, eventInfo) {
-    if (!painter.stampEventsMouseOn) {
-      return false;
-    }
-
-    /*relational database point */
-    painter.removeBorder(eventInfo.shape.id);
-
     console.log("stamp stampMouseOut event listener");
-
   });
-
-
-
 
   /*remove stamp event listener */
-
   $(document).on('canvasStampRemove', function(e, eventInfo) {
-    console.log("hi canvasStampRemove AI event listener", e, eventInfo);
+    console.log("canvasStampRemove event listener", e, eventInfo);
   });
 
 
+### what this framework provide more than normal javaScript and normal drag and drop API:
 
 
+1. canvasGroupStampClick
+2. CanvasRelaseCancel
 
+3- on drag and drop event, all data saved in list in painter object can be sent by settimeout/socket-ajax/socket to server in any time with timestamps as unique id aslo with the all data of event and data transferobject to trace the game changes or even try make performance by wait at some time and make all changes once with 1 request per period of time.
 ```
 
 ### License
