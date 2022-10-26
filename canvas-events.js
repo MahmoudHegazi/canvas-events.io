@@ -347,8 +347,11 @@ function startDragEnterListener(event, elmSelector = settings.canvasSelector) {
 }
 
 /*main function*/
-function startCanvasEvents(elmSelector, projectStamps, stampEventsOn=true, stampEventsMouseOn=true, hoverBgZero= "rgba(50, 250,10, 0.3)", hoverBgOne="rgba(170, 170,240, 0.3)") {
+function startCanvasEvents(elmSelector, projectStamps, eventsSettings=null,stampEventsOn=true, stampEventsMouseOn=true, hoverBgZero= "rgba(50, 250,10, 0.3)", hoverBgOne="rgba(170, 170,240, 0.3)") {
 
+if (eventsSettings){
+  settings = eventsSettings;
+}
 
 const painter = {
 /* easly controll the events and close them*/
