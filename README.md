@@ -208,6 +208,141 @@ window.onload = function() {
 3- on drag and drop event, all data saved in list in painter object can be sent by settimeout/socket-ajax/socket to server in any time with timestamps as unique id aslo with the all data of event and data transferobject to trace the game changes or even try make performance by wait at some time and make all changes once with 1 request per period of time.
 ```
 
+
+## current painter object returned from startCanvasEvents function
+```javascript
+{
+    "stampEventsOn": true,
+    "stampEventsMouseOn": true,
+    "currentMouseEnters": [],
+    "currentMouseEntersShapes": [],
+    "borders": [],
+    "hoverBgZero": "rgba(50, 250,10, 0.3)",
+    "hoverBgOne": "rgba(170, 170,240, 0.3)",
+    "canvas": {
+        "jQuery360046080317821443441": {
+            "events": {
+                "mouseup": [
+                    {
+                        "type": "mouseup",
+                        "origType": "mouseup",
+                        "guid": 18,
+                        "namespace": "dragevent"
+                    }
+                ],
+                "mousedown": [
+                    {
+                        "type": "mousedown",
+                        "origType": "mousedown",
+                        "guid": 18,
+                        "namespace": "dragevent"
+                    }
+                ]
+            }
+        }
+    },
+    "ctx": {},
+    "projectStamps": [
+        {
+            "title": "repear",
+            "image_id": "scream",
+            "x": 100,
+            "y": 100,
+            "w": 35,
+            "h": 35,
+            "id": 1
+        },
+        {
+            "title": "repear2",
+            "image_id": "scream",
+            "x": 100,
+            "y": 100,
+            "w": 35,
+            "h": 35,
+            "id": 122
+        },
+        {
+            "title": "fix",
+            "image_id": "scream",
+            "x": 200,
+            "y": 100,
+            "w": 35,
+            "h": 35,
+            "id": 2
+        },
+        {
+            "title": "development",
+            "image_id": "scream",
+            "x": 50,
+            "y": 0,
+            "w": 35,
+            "h": 35,
+            "id": 3
+        },
+        {
+            "title": "guarding",
+            "image_id": "scream",
+            "x": 170,
+            "y": 0,
+            "w": 35,
+            "h": 35,
+            "id": 4
+        }
+    ],
+    "currentShapes": [
+        {
+            "title": "repear",
+            "image_id": "scream",
+            "x": 100,
+            "y": 100,
+            "w": 35,
+            "h": 35,
+            "id": 1
+        },
+        {
+            "title": "repear2",
+            "image_id": "scream",
+            "x": 100,
+            "y": 100,
+            "w": 35,
+            "h": 35,
+            "id": 122
+        },
+        {
+            "title": "fix",
+            "image_id": "scream",
+            "x": 200,
+            "y": 100,
+            "w": 35,
+            "h": 35,
+            "id": 2
+        },
+        {
+            "title": "development",
+            "image_id": "scream",
+            "x": 50,
+            "y": 0,
+            "w": 35,
+            "h": 35,
+            "id": 3
+        },
+        {
+            "title": "guarding",
+            "image_id": "scream",
+            "x": 170,
+            "y": 0,
+            "w": 35,
+            "h": 35,
+            "id": 4
+        }
+    ],
+    "iconHtmlIds": [],
+    "stampIcons": []
+}
+```
+
+
+
 ### License
 
 MIT License
