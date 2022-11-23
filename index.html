@@ -92,8 +92,8 @@ const projectStamps = [{
 
 
 window.onload = function() {
-  /* Use Canvas Events Library */
-  painter = mouseDragStartGenerator('#myCanvas', projectStamps);  
+  /* Use Canvas Events Library wrong name mouseDragStartGenerator, use startCanvasEvents to start and add all existing marks (important for load old marks) */
+  painter = startCanvasEvents('#myCanvas', projectStamps);  
 };
 
 
