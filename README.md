@@ -22,7 +22,7 @@ Now you can use events on canvas shapes
 5. drag enter
 6. drop
 7. drag end
-8. Relase Cancel event  !!! The new JavaScript event listener which not exist in javascript before which is 
+8. Release Cancel event  !!! The new JavaScript event listener which not exist in javascript before which is 
 9. click event
 10. mouseenter shape event (accurate by 1 pixel)
 11. mouseout shape event (accurate by 1 pixel)
