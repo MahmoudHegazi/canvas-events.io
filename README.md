@@ -154,7 +154,7 @@ window.onload = function() {
 
 
 
-### events
+### events (this what developer use)
 
 ``` javaScript
   /*   Drag Events Listener STarts (developer work) */
